@@ -2,24 +2,22 @@ import { Cart } from "@/icons";
 import { StyledCartContainer, StyledContent, StyledNavBar, StyledTitle, StyledTitleSpan } from "./styled";
 import { useState } from "react";
 import { CartShops } from "..";
+import { useCartStore } from "@/store";
 
 export function NavBar() {
-  const [isCart, setIsCart] = useState<boolean>(false);
+  const { cart, openCart } = useCartStore();
 
-  const changeIsCart = () => {
-    setIsCart(!isCart);
-  };
   return (
     <StyledNavBar>
       <StyledContent>
         <StyledTitle>
           MKS <StyledTitleSpan>Sistemas</StyledTitleSpan>
         </StyledTitle>
-        <StyledCartContainer onClick={changeIsCart}>
-          <Cart fill="currentColor" /> 0
+        <StyledCartContainer onClick={openCart}>
+          <Cart fill="currentColor" /> {cart?.length}
         </StyledCartContainer>
       </StyledContent>
-      <CartShops isCart={isCart} changeIsCart={changeIsCart} />
+      <CartShops />
     </StyledNavBar>
   );
 }

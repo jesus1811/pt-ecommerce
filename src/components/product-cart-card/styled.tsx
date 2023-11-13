@@ -18,6 +18,8 @@ export const StyledProduct = styled.article`
 
 export const StyledProductContent = styled.div`
   display: flex;
+  width: 100%;
+  max-width: 15rem;
   align-items: center;
 `;
 
@@ -83,6 +85,12 @@ export const StyledNumber = styled.p`
 `;
 export const StyledRemoveAdd = styled(StyledNumber)`
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  width: 100%;
+  height: 100%;
 `;
 
 export const StyledPrice = styled.p`

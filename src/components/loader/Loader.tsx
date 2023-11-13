@@ -1,5 +1,7 @@
+import { StyledLoader } from "./styled";
+
 export function Loader() {
-  return <div>Loader</div>;
+  return <StyledLoader />;
 }
 
 export default Loader;

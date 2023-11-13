@@ -1,9 +1,13 @@
-import { Layout, ProductCard, Products } from "@/components";
-import { getProducts } from "@/services";
-import { useQuery } from "react-query";
+import { Layout, Products } from "@/components";
+import { useCartStore } from "@/store";
+import { useEffect } from "react";
 
 export function Home() {
-  const { data: products } = useQuery(["products"], () => getProducts({ page: 1, rows: 6, orderBy: "ASC", sortBy: "name" }));
+  const { loadStorage } = useCartStore();
+
+  useEffect(() => {
+    loadStorage(JSON.parse(localStorage.getItem("CART") || "[]"));
+  }, [loadStorage]);
   return (
     <Layout>
       <Products />

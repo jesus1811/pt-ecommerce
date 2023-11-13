@@ -1,3 +1,4 @@
+import { formatPrice } from "@/utilities";
 import {
   StyledClose,
   StyledImage,
@@ -12,26 +13,31 @@ import {
   StyledRemoveAndAddContent,
   StyledTitle,
 } from "./styled";
+import { IProductCartCardProps } from "./types";
+import { useCartStore } from "@/store";
 
-export function ProductCartCard() {
+export function ProductCartCard(props: IProductCartCardProps) {
+  const { product } = props;
+  const { addCart, decreaseCart, removeProduct } = useCartStore();
+  if (!product) return null;
   return (
     <StyledProduct>
       <StyledProductContent>
-        <StyledImage src="https://mks-sistemas.nyc3.digitaloceanspaces.com/products/applewatch-series7.webp" alt="" />
-        <StyledTitle>Apple Watch Series 4 GPS</StyledTitle>
+        <StyledImage src={product?.photo} alt="" />
+        <StyledTitle>{product?.name}</StyledTitle>
         <StyledRemoveAndAddContainer>
           <StyledRemoveAddTitle>Qtd:</StyledRemoveAddTitle>
           <StyledRemoveAndAddContent>
-            <StyledRemoveAdd>-</StyledRemoveAdd>
+            <StyledRemoveAdd onClick={() => decreaseCart(product)}>-</StyledRemoveAdd>
             <StyledLine />
-            <StyledNumber>1</StyledNumber>
+            <StyledNumber>{product?.count}</StyledNumber>
             <StyledLine />
-            <StyledRemoveAdd>+</StyledRemoveAdd>
+            <StyledRemoveAdd onClick={() => addCart(product)}>+</StyledRemoveAdd>
           </StyledRemoveAndAddContent>
         </StyledRemoveAndAddContainer>
       </StyledProductContent>
-      <StyledPrice>R$399</StyledPrice>
-      <StyledClose>x</StyledClose>
+      <StyledPrice>R${formatPrice(product?.price)}</StyledPrice>
+      <StyledClose onClick={() => removeProduct(product?.id)}>x</StyledClose>
     </StyledProduct>
   );
 }

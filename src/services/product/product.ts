@@ -1,5 +1,6 @@
 import axios from "axios";
-import { IProductsRequest, IProduct } from "./types";
+import { IProductsRequest } from "./types";
+import { IProduct } from "@/types";
 
 const URL = "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1";
 
