@@ -1,6 +1,5 @@
 import { Cart } from "@/icons";
 import { StyledCartContainer, StyledContent, StyledNavBar, StyledTitle, StyledTitleSpan } from "./styled";
-import { useState } from "react";
 import { CartShops } from "..";
 import { useCartStore } from "@/store";
 
